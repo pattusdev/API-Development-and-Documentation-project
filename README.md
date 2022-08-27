@@ -49,7 +49,7 @@ npm start
 
 ## Backend - Udacitrivia
 
-> _tip_:Prerequesites Dependencies: Python3, PIP3, node and npm installed with postgres
+> _tip_: Prerequesites Dependencies: Python3, PIP3, node and npm installed with postgres
 
     - Python 3.7 or later will work fine on local
 
@@ -138,7 +138,7 @@ python test_flaskr.py
 
 ### Getting Started
 
-> _tip_:Authentication: This version of the application does not require authentication or API keys.
+> _tip_: Authentication: This version of the application does not require authentication or API keys.
 
 ### This app Meet This Requirements
 
@@ -155,7 +155,7 @@ python test_flaskr.py
 
 3. Error handlers for all expected errors including 400, 404, 422, and 500. etc
 
-> _tip_:Base URL: Currently this application is only hosted locally. The backend is hosted at http://127.0.0.1:5000/
+> _tip_: Base URL: Currently this application is only hosted locally. The backend is hosted at http://127.0.0.1:5000/
 > Authentication: This version does not require authentication or API keys.
 
 ## Endpoints Documenting
