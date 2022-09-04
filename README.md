@@ -47,9 +47,16 @@ Open http://localhost:3000 to view it in the browser. The page will reload if yo
 npm start
 ```
 
+> _Quick link to navigate_:
+>
+> - [Frontend](./README.md#frontend---udacitrivia)
+> - [Backend](./README.md#backend---udacitrivia)
+> - [API Reference](./README.md#api-reference)
+> - [Testing](./README.md#testing-1)
+
 ## Backend - Udacitrivia
 
-> _tip_: Prerequesites Dependencies: Python3, PIP3, node and npm installed with postgres
+> _tip_:Prerequesites Dependencies: Python3, PIP3, node and npm installed with postgres
 
     - Python 3.7 or later will work fine on local
 
@@ -134,11 +141,18 @@ psql trivia_test < trivia.psql
 python test_flaskr.py
 ```
 
+> _Quick link to navigate_:
+>
+> - [Frontend](./README.md#frontend---udacitrivia)
+> - [Backend](./README.md#backend---udacitrivia)
+> - [API Reference](./README.md#api-reference)
+> - [Testing](./README.md#testing-1)
+
 ## API Reference
 
 ### Getting Started
 
-> _tip_: Authentication: This version of the application does not require authentication or API keys.
+> _tip_:Authentication: This version of the application does not require authentication or API keys.
 
 ### This app Meet This Requirements
 
@@ -155,7 +169,7 @@ python test_flaskr.py
 
 3. Error handlers for all expected errors including 400, 404, 422, and 500. etc
 
-> _tip_: Base URL: Currently this application is only hosted locally. The backend is hosted at http://127.0.0.1:5000/
+> _tip_:Base URL: Currently this application is only hosted locally. The backend is hosted at http://127.0.0.1:5000/
 > Authentication: This version does not require authentication or API keys.
 
 ## Endpoints Documenting
@@ -191,6 +205,7 @@ Documentation of API endpoints including the URL, request parameters with sample
 
 ```json
 {
+  "success": true,
   "categories": {
     "1": "Science",
     "2": "Art",
@@ -199,7 +214,6 @@ Documentation of API endpoints including the URL, request parameters with sample
     "5": "Entertainment",
     "6": "Sports"
   },
-  "success": true,
   "total_categories": 6
 }
 ```
@@ -213,6 +227,80 @@ Documentation of API endpoints including the URL, request parameters with sample
 
 ```json
 {
+  "success": true,
+  "questions": [
+    {
+      "id": 2,
+      "question": "What movie earned Tom Hanks his third straight Oscar nomination, in 1996?",
+      "answer": "Apollo 13",
+      "category": 5,
+      "difficulty": 4
+    },
+    {
+      "id": 4,
+      "question": "What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?",
+      "answer": "Tom Cruise",
+      "category": 5,
+      "difficulty": 4
+    },
+    {
+      "id": 5,
+      "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?",
+      "answer": "Maya Angelou",
+      "category": 4,
+      "difficulty": 2
+    },
+    {
+      "id": 9,
+      "question": "What boxer's original name is Cassius Clay?",
+      "answer": "Muhammad Ali",
+      "category": 4,
+      "difficulty": 1
+    },
+    {
+      "id": 10,
+      "question": "Which is the only team to play in every soccer World Cup tournament?",
+      "answer": "Brazil",
+      "category": 6,
+      "difficulty": 3
+    },
+    {
+      "id": 11,
+      "question": "Which country won the first ever soccer World Cup in 1930?",
+      "answer": "Uruguay",
+      "category": 6,
+      "difficulty": 4
+    },
+    {
+      "id": 12,
+      "question": "Who invented Peanut Butter?",
+      "answer": "George Washington Carver",
+      "category": 4,
+      "difficulty": 2
+    },
+    {
+      "id": 13,
+      "question": "What is the largest lake in Africa?",
+      "answer": "Lake Victoria",
+      "category": 3,
+      "difficulty": 2
+    },
+    {
+      "id": 14,
+      "question": "In which royal palace would you find the Hall of Mirrors?",
+      "answer": "The Palace of Versailles",
+      "category": 3,
+      "difficulty": 3
+    },
+    {
+      "id": 15,
+      "question": "The Taj Mahal is located in which Indian city?",
+      "answer": "Agra",
+      "category": 3,
+      "difficulty": 2
+    }
+  ],
+  "total_questions": 20,
   "categories": {
     "1": "Science",
     "2": "Art",
@@ -221,81 +309,7 @@ Documentation of API endpoints including the URL, request parameters with sample
     "5": "Entertainment",
     "6": "Sports"
   },
-  "current_category": {},
-  "questions": [
-    {
-      "answer": "Apollo 13",
-      "category": 5,
-      "difficulty": 4,
-      "id": 2,
-      "question": "What movie earned Tom Hanks his third straight Oscar nomination, in 1996?"
-    },
-    {
-      "answer": "Tom Cruise",
-      "category": 5,
-      "difficulty": 4,
-      "id": 4,
-      "question": "What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?"
-    },
-    {
-      "answer": "Maya Angelou",
-      "category": 4,
-      "difficulty": 2,
-      "id": 5,
-      "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
-    },
-    {
-      "answer": "Muhammad Ali",
-      "category": 4,
-      "difficulty": 1,
-      "id": 9,
-      "question": "What boxer's original name is Cassius Clay?"
-    },
-    {
-      "answer": "Brazil",
-      "category": 6,
-      "difficulty": 3,
-      "id": 10,
-      "question": "Which is the only team to play in every soccer World Cup tournament?"
-    },
-    {
-      "answer": "Uruguay",
-      "category": 6,
-      "difficulty": 4,
-      "id": 11,
-      "question": "Which country won the first ever soccer World Cup in 1930?"
-    },
-    {
-      "answer": "George Washington Carver",
-      "category": 4,
-      "difficulty": 2,
-      "id": 12,
-      "question": "Who invented Peanut Butter?"
-    },
-    {
-      "answer": "Lake Victoria",
-      "category": 3,
-      "difficulty": 2,
-      "id": 13,
-      "question": "What is the largest lake in Africa?"
-    },
-    {
-      "answer": "The Palace of Versailles",
-      "category": 3,
-      "difficulty": 3,
-      "id": 14,
-      "question": "In which royal palace would you find the Hall of Mirrors?"
-    },
-    {
-      "answer": "Agra",
-      "category": 3,
-      "difficulty": 2,
-      "id": 15,
-      "question": "The Taj Mahal is located in which Indian city?"
-    }
-  ],
-  "success": true,
-  "total_questions": 18
+  "current_category": "all available"
 }
 ```
 
@@ -303,27 +317,38 @@ DELETE '/questions/<int:id>'
 
 - Deletes a question by id using url parameters
 - Returns id of deleted questions if successful
-- `curl -X DELETE http://127.0.0.1:5000/questions/23`
+- `curl -X DELETE http://127.0.0.1:5000/questions/22`
 
 ```json
 {
-  "deleted": 23,
   "success": true,
-  "total_qts": 17
+  "deleted_question": {
+    "id": 22,
+    "question": "Hematology is a branch of medicine involving the study of what?",
+    "answer": "Blood",
+    "category": 1,
+    "difficulty": 4
+  },
+  "remaining_questions": 18
 }
 ```
 
 POST'/questions'
 
 - Creates a new question using JSON request parameters in the database
-- `curl -X POST -H "Content-Type: application/json" -d '{"question": "My Name?", "answer": "Patrick", "difficulty": 3, "category": "3" }' http://127.0.0.1:5000/questions`
+- `curl -X POST -H "Content-Type: application/json" -d '{"question": "What is your name?", "answer": "You", "difficulty": 1, "category": "1" }' http://127.0.0.1:5000/questions`
 
 ```json
 {
-  "created": 24,
-  "new_question": "My Name?",
   "success": true,
-  "tot_questions": 18
+  "created_question": {
+    "id": 56,
+    "question": "What is your name?",
+    "answer": "You",
+    "category": 2,
+    "difficulty": 1
+  },
+  "total_questions": 19
 }
 ```
 
@@ -334,18 +359,18 @@ POST'/questions/search'
 
 ```json
 {
-  "current_category": null,
+  "success": true,
   "questions": [
     {
+      "id": 11,
+      "question": "Which country won the first ever soccer World Cup in 1930?",
       "answer": "Uruguay",
       "category": 6,
-      "difficulty": 4,
-      "id": 11,
-      "question": "Which country won the first ever soccer World Cup in 1930?"
+      "difficulty": 4
     }
   ],
-  "success": true,
-  "total_questions": 1
+  "total_questions": 1,
+  "current_category": "any"
 }
 ```
 
@@ -364,7 +389,7 @@ psql trivia_test < trivia.psql
 python test_flaskr.py
 ```
 
-This API should pass all 13 test
+This API passed all 13 test
 
 > _Quick link to navigate_:
 >
