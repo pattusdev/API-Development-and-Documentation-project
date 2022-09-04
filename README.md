@@ -193,6 +193,7 @@ There are six types of errors this API will return;
 - 422 - unprocessable resources
 - 405 - Invalid method!
 - 500 - Internal server error
+- 406 - Not Acceptable
 
 Documentation of API endpoints including the URL, request parameters with sampled example;
 
