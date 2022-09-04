@@ -102,8 +102,8 @@ class TriviaTestCase(unittest.TestCase):
 
     # testing success remove question
     def test_remove_question(self):
-        qts_no = 15
-        resp = self.client().delete('/questions/{}'.format(qts_no))
+        question_no = 27
+        resp = self.client().delete('/questions/{}'.format(question_no))
         data = json.loads(resp.data)
 
         # question = Question.query.filter_by(id=id).one_or_none()
@@ -111,13 +111,13 @@ class TriviaTestCase(unittest.TestCase):
 
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertTrue(data['deleted'], qts_no)
-        # here the total question is from trivia db
-        self.assertTrue(data['total_qts'])
+        self.assertTrue(data['deleted_question'])
+        # here the remaining question is from trivia db
+        self.assertTrue(data['remaining_questions'])
 
     # testing error for question not found
     def test_422handler_question_notFound(self):
-        qts_no = 11
+        qts_no = 1000
         resp = self.client().delete('/questions/{}'.format(qts_no))
         data = json.loads(resp.data)
 
@@ -132,18 +132,18 @@ class TriviaTestCase(unittest.TestCase):
 
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertTrue(data['created'])
-        self.assertTrue(len(data['new_question']))
-        self.assertTrue(data['tot_questions'])
+        self.assertTrue(data['created_question'])
+        self.assertTrue(len(data['created_question']))
+        self.assertTrue(data['total_questions'])
 
     # testing error for failed question creation
     def test_405handler_creation_notAllowed(self):
         resp = self.client().post('/questions', json=self.new_question2)
         data = json.loads(resp.data)
 
-        self.assertEqual(resp.status_code, 405)
+        self.assertEqual(resp.status_code, 406)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'Invalid method!')
+        self.assertEqual(data['message'], 'Not Acceptable')
 
     # testing finding a question
     def test_find_questions(self):
