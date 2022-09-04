@@ -219,14 +219,14 @@ def create_app(test_config=None):
         if len(selected_questions) == 0:
             abort(404)
 
-        # dictionary to hold retrieved questions
-        questionDict = {qts.id: qts.question for qts in all_questions}
+        # variable to hold formated question
+        questions = [qts.format() for qts in all_questions]
 
         # return a success message
         return jsonify(
             success=True,
             current_category=cat_id,
-            questions=questionDict,
+            questions=questions,
             total_questions=len(all_questions)
 
         )
