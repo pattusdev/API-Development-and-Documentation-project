@@ -247,7 +247,7 @@ def create_app(test_config=None):
         quiz_cat = body.get('quiz_category')
         last_questions = body.get('previous_questions')
 
-        # category not mention filter all question
+        # category not mention filter all questions
         question = Question.query.filter(
             Question.id.notin_(last_questions)).all() if not quiz_cat['id'] else ''
 
