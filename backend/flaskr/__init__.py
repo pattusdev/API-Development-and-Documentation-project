@@ -267,9 +267,9 @@ def create_app(test_config=None):
             remaining_question=len(question)
         )
 
-    # -------------------------------------------------------------
-    # Expected error handlers
-    # -------------------------------------------------------------
+    # ----------------------------------------------------------------
+    # Expected error handlers includes [422, 404, 400, 405, 500, 406]
+    # ----------------------------------------------------------------
 
     @ app.errorhandler(422)
     def unprocessable_error(error):
