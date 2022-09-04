@@ -4,7 +4,7 @@
 
 > _Quick link to navigate_:
 >
-> - [Frontend](./API-Development-and-Documentation-project/blob/main/README.md#frontend---udacitrivia)
-> - [Backend](./API-Development-and-Documentation-project/README.md#backend---udacitrivia)
-> - [API Reference](./API-Development-and-Documentation-project/README.md#api-reference)
-> - [Testing](./API-Development-and-Documentation-project/README.md#testing-1)
+> - [Frontend](https://github.com/pattusdev/API-Development-and-Documentation-project/blob/main/README.md#frontend---udacitrivia)
+> - [Backend](https://github.com/pattusdev/API-Development-and-Documentation-project/blob/main/README.md#backend---udacitrivia)
+> - [API Reference](https://github.com/pattusdev/API-Development-and-Documentation-project/blob/main/README.md#api-reference)
+> - [Testing](https://github.com/pattusdev/API-Development-and-Documentation-project/blob/main/README.md#testing-1)
