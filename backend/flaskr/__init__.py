@@ -55,16 +55,19 @@ def create_app(test_config=None):
 
     @app.route('/categories')
     def getall_categories():
-        # by Default GET Method request
+        try:
+            # by Default GET Method request
 
-        # get all categories
-        categories = Category.query.order_by(Category.id).all()
+            # get all categories
+            categories = Category.query.order_by(Category.id).all()
 
-        # dictionary to hold retrieved categories
-        categoryDict = {cat.id: cat.type for cat in categories}
+            # dictionary to hold retrieved categories
+            categoryDict = {cat.id: cat.type for cat in categories}
 
-        # abort if no category found
-        if len(categoryDict) == 0:
+            # abort if no category found
+            if len(categoryDict) == 0:
+                abort(404)
+        except:
             abort(404)
 
         # return success message
@@ -80,24 +83,26 @@ def create_app(test_config=None):
 
     @ app.route('/questions')
     def getall_questions():
-        # by Default GET Method request
+        try:
+            # by Default GET Method request
 
-        # get all questions respect to pagination aspect of 10
-        selection = Question.query.order_by(Question.id).all()
+            # get all questions respect to pagination aspect of 10
+            selection = Question.query.order_by(Question.id).all()
 
-        # pagination
-        selected_questions = paginate_questions(request, selection)
+            # pagination
+            selected_questions = paginate_questions(request, selection)
 
-        # get all categories
-        categories = Category.query.order_by(Category.id).all()
+            # get all categories
+            categories = Category.query.order_by(Category.id).all()
 
-        # dictionary to hold categories
-        categoryDict = {cat.id: cat.type for cat in categories}
+            # dictionary to hold categories
+            categoryDict = {cat.id: cat.type for cat in categories}
 
-        # Abort if no questions found
-        if len(selected_questions) == 0:
+            # Abort if no questions found
+            if len(selected_questions) == 0:
+                abort(404)
+        except:
             abort(404)
-
         # return success message
         return jsonify(
             success=True,
@@ -139,34 +144,36 @@ def create_app(test_config=None):
 
     @ app.route("/questions", methods=['POST'])
     def new_question():
-        # Requesting data
-        body = request.get_json()
+        try:
+            # Requesting data
+            body = request.get_json()
 
-        # Abort no data found
-        if not ('question' in body and 'answer' in body and 'difficulty' in body and 'category' in body):
-            abort(406)
+            # Abort no data found
+            if not ('question' in body and 'answer' in body and 'difficulty' in body and 'category' in body):
+                abort(406)
 
-        # Adding ...
-        add_question = body.get('question', '')
-        add_answer = body.get('answer', '')
-        add_difficulty = body.get('difficulty', '')
-        add_category = body.get('category', '')
+            # Adding ...
+            add_question = body.get('question', '')
+            add_answer = body.get('answer', '')
+            add_difficulty = body.get('difficulty', '')
+            add_category = body.get('category', '')
 
-        # if not storing empty question continue...
-        # raise error alert in frontend
-        if not ((add_question == '') or (add_answer == '') or (add_difficulty == '') or (add_category == '')):
+            # if not storing empty question continue...
+            # raise error alert in frontend
+            if not ((add_question == '') or (add_answer == '') or (add_difficulty == '') or (add_category == '')):
 
-            # Inserting ...
-            question = Question(
-                question=add_question,
-                answer=add_answer,
-                difficulty=add_difficulty,
-                category=add_category
-            )
+                # Inserting ...
+                question = Question(
+                    question=add_question,
+                    answer=add_answer,
+                    difficulty=add_difficulty,
+                    category=add_category
+                )
 
-            # Storing ...
-            question.insert()
-
+                # Storing ...
+                question.insert()
+        except:
+            abort(404)
         # return a success message
         return jsonify(
             success=True,
@@ -180,19 +187,21 @@ def create_app(test_config=None):
 
     @ app.route('/questions/search', methods=['POST'])
     def find_questions():
-        # Requesting data
-        body = request.get_json()
-        search_Term = Question.query.filter(
-            Question.question.ilike('%{}%'.format(body.get('searchTerm')))
-        ).all()
+        try:
+            # Requesting data
+            body = request.get_json()
+            search_Term = Question.query.filter(
+                Question.question.ilike('%{}%'.format(body.get('searchTerm')))
+            ).all()
 
-        if not body.get('searchTerm'):
-            # abort when nothing inserted
+            if not body.get('searchTerm'):
+                # abort when nothing inserted
+                abort(404)
+
+            # else paginate if exceed above 10
+            searched_questions = paginate_questions(request, search_Term)
+        except:
             abort(404)
-
-        # else paginate if exceed above 10
-        searched_questions = paginate_questions(request, search_Term)
-
         # return success message
         return jsonify(
             success=True,
@@ -206,22 +215,24 @@ def create_app(test_config=None):
 
     @ app.route('/categories/<int:cat_id>/questions')
     def get_questions_by_category(cat_id):
-        # By Default GET Method request
-        # Filter Question with the given Category id
-        all_questions = Question.query.filter_by(
-            category=cat_id
-        ).all()
+        try:
+            # By Default GET Method request
+            # Filter Question with the given Category id
+            all_questions = Question.query.filter_by(
+                category=cat_id
+            ).all()
 
-        # pagination
-        selected_questions = paginate_questions(request, all_questions)
+            # pagination
+            selected_questions = paginate_questions(request, all_questions)
 
-        # abort when no questions found
-        if len(selected_questions) == 0:
+            # abort when no questions found
+            if len(selected_questions) == 0:
+                abort(404)
+
+            # variable to hold formated question
+            questions = [qts.format() for qts in all_questions]
+        except:
             abort(404)
-
-        # variable to hold formated question
-        questions = [qts.format() for qts in all_questions]
-
         # return a success message
         return jsonify(
             success=True,
@@ -236,30 +247,32 @@ def create_app(test_config=None):
 
     @ app.route('/quizzes', methods=['POST'])
     def start_quiz():
-        # requesting data
-        body = request.get_json()
+        try:
+            # requesting data
+            body = request.get_json()
 
-        # abort when no data found
-        if not ('quiz_category' in body and 'previous_questions' in body):
-            abort(422)
+            # abort when no data found
+            if not ('quiz_category' in body and 'previous_questions' in body):
+                abort(422)
 
-        # adding into variables
-        quiz_cat = body.get('quiz_category')
-        last_questions = body.get('previous_questions')
+            # adding into variables
+            quiz_cat = body.get('quiz_category')
+            last_questions = body.get('previous_questions')
 
-        # category not mention filter all questions
-        question = Question.query.filter(
-            Question.id.notin_(last_questions)).all() if not quiz_cat['id'] else ''
-
-        # filter questions by category
-        if quiz_cat['id']:
+            # category not mention filter all questions
             question = Question.query.filter(
-                Question.category == quiz_cat['id'], Question.id.notin_(last_questions)).all()
+                Question.id.notin_(last_questions)).all() if not quiz_cat['id'] else ''
 
-        # random question
-        new_question = random.choice(
-            question).format() if len(question) > 0 else 'no questions found!'
+            # filter questions by category
+            if quiz_cat['id']:
+                question = Question.query.filter(
+                    Question.category == quiz_cat['id'], Question.id.notin_(last_questions)).all()
 
+            # random question
+            new_question = random.choice(
+                question).format() if len(question) > 0 else 'no questions found!'
+        except:
+            abort(404)
         return jsonify(
             success=True,
             question=new_question,
