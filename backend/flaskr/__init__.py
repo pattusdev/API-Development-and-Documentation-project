@@ -87,8 +87,7 @@ def create_app(test_config=None):
             # by Default GET Method request
 
             # get all questions respect to pagination aspect of 10
-            selection = Question.query.order_by(
-                Question.id).all()
+            selection = Question.query.order_by(Question.id).all()
 
             # pagination
             selected_questions = paginate_questions(request, selection)
@@ -100,10 +99,11 @@ def create_app(test_config=None):
             categoryDict = {cat.id: cat.type for cat in categories}
 
             # Abort if no questions found
-            if len(selection) == 0:
+            if len(selected_questions) == 0:
                 abort(404)
+
         except:
-            abort(422)
+            abort(404)
         # return success message
         return jsonify(
             success=True,
@@ -172,7 +172,7 @@ def create_app(test_config=None):
                 # Storing ...
                 question.insert()
         except:
-            abort(404)
+            abort(406)
         # return a success message
         return jsonify(
             success=True,
@@ -271,7 +271,7 @@ def create_app(test_config=None):
             new_question = random.choice(
                 question).format() if len(question) > 0 else ''
         except:
-            abort(404)
+            abort(422)
         return jsonify(
             success=True,
             question=new_question,
