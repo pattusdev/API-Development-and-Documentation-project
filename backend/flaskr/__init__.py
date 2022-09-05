@@ -87,7 +87,8 @@ def create_app(test_config=None):
             # by Default GET Method request
 
             # get all questions respect to pagination aspect of 10
-            selection = Question.query.order_by(Question.id).all()
+            selection = Question.query.order_by(
+                Question.id).all()
 
             # pagination
             selected_questions = paginate_questions(request, selection)
@@ -99,10 +100,10 @@ def create_app(test_config=None):
             categoryDict = {cat.id: cat.type for cat in categories}
 
             # Abort if no questions found
-            if len(selected_questions) == 0:
+            if len(selection) == 0:
                 abort(404)
         except:
-            abort(404)
+            abort(422)
         # return success message
         return jsonify(
             success=True,
@@ -118,18 +119,16 @@ def create_app(test_config=None):
 
     @ app.route("/questions/<int:id>", methods=['DELETE'])
     def remove_question(id):
-
-        # Get question filter by id
-        question = Question.query.filter_by(id=id).one_or_none()
-
         try:
+            # Get question filter by id
+            question = Question.query.filter_by(id=id).one_or_none()
+
             # delete that question
             question.delete()
 
+        # abort no question found!
         except:
-            # Abort for no question found
-            if question is None:
-                abort(422)
+            abort(422)
 
         # return success message
         return jsonify(
@@ -268,9 +267,9 @@ def create_app(test_config=None):
                 question = Question.query.filter(
                     Question.category == quiz_cat['id'], Question.id.notin_(last_questions)).all()
 
-            # random question
+            # random question else return nothing
             new_question = random.choice(
-                question).format() if len(question) > 0 else 'no questions found!'
+                question).format() if len(question) > 0 else ''
         except:
             abort(404)
         return jsonify(
